@@ -11,14 +11,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-var MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/myFirstDatabase";
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+// var MONGODB_URI =
+//   process.env.MONGODB_URI || "mongodb://localhost/myFirstDatabase";
+// mongoose.connect(MONGODB_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useCreateIndex: true,
+//   useFindAndModify: false,
+// });
+
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/myFirstDatabase",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  }
+);
 
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
